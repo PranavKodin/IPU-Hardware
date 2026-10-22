@@ -1,7 +1,7 @@
 
 # Electronics Projects
 
-A collection of electronics projects I've been working on, exploring microcontrollers, embedded programming, hardware interfacing, and DIY device design.
+A collection of electronics and embedded systems projects I've been exploring, from simple Arduino experiments to microcontroller-based devices and robotics.
 
 ## Projects
 
@@ -22,7 +22,7 @@ The project combines sound generation, character display control, button input, 
 - A button starts the playback.
 - The Arduino generates musical notes through the buzzer.
 - The LCD displays the corresponding lyrics as the song progresses.
-- Custom LCD characters can be used to add small visual details to the display.
+- Custom LCD characters add small visual details to the display.
 
 **What I learned**
 - Interfacing an LCD with an Arduino in 4-bit mode
@@ -37,14 +37,14 @@ The project combines sound generation, character display control, button input, 
 
 TinyJoy is a compact, retro-style gamepad project based on the ESP8266. The goal is to build a small handheld device with physical buttons and an OLED screen, inspired by classic portable gaming consoles.
 
-The ESP8266 handles the input and device logic, while the OLED provides a small interface for menus, game graphics, and status information.
+The ESP8266 handles the input and device logic, while the OLED provides an interface for menus, game graphics, and status information.
 
 **Hardware used**
 - ESP8266 development board
 - Small OLED display
 - Tactile push buttons
 - Jumper wires
-- Battery and power regulation circuit (for a portable version)
+- Battery and voltage regulation circuit for a portable version
 
 **Planned functionality**
 - Compact handheld design
@@ -58,15 +58,43 @@ The ESP8266 handles the input and device logic, while the OLED provides a small 
 - Driving an OLED display over I²C
 - Structuring firmware for menus and game logic
 - Managing power in a compact embedded device
-- Designing a small, practical handheld enclosure
+- Designing a small handheld enclosure
 
-The final button layout, display specifications, and game features depend on the hardware and firmware implementation.
+---
+
+### 3. Arduino Line Follower Robot with Obstacle Detection
+
+An autonomous robotics project that combines line following with obstacle detection. The robot uses infrared sensing to follow a black line and an ultrasonic sensor to detect obstacles along its path.
+
+An Arduino Uno processes the sensor readings and controls the motors through an L298N H-bridge motor driver. The program also supports serial commands to start or stop the robot's route.
+
+**Hardware used**
+- Arduino Uno
+- TCRT5000 IR sensor module
+- HC-SR04 ultrasonic sensor
+- L298N dual H-bridge motor driver
+- 2WD robot chassis with DC motors
+- Battery and connecting wires
+
+**How it works**
+- The IR sensor detects the line using reflectance differences.
+- The Arduino uses sensor readings to control the robot's direction.
+- The ultrasonic sensor measures the distance to nearby obstacles.
+- The robot can stop when an obstacle is detected or when the end of the route is recognized.
+- Serial commands `d` and `s` start and stop the route, respectively.
+
+**What I learned**
+- Combining multiple sensors in a robotics project
+- Controlling DC motors through an H-bridge driver
+- Understanding infrared reflectance and ultrasonic distance measurement
+- Implementing basic autonomous navigation
+- Using serial communication to control robot behaviour
 
 ---
 
 ## Technologies & Concepts
 
-- Arduino Nano
+- Arduino Nano and Arduino Uno
 - ESP8266
 - Embedded C/C++
 - Arduino IDE
@@ -74,6 +102,9 @@ The final button layout, display specifications, and game features depend on the
 - LCD and OLED interfacing
 - I²C communication
 - Buzzer tone generation
+- IR sensing and obstacle detection
+- DC motor control
+- Serial communication
 - Basic power management
 
 ## Repository Structure
@@ -84,14 +115,17 @@ electronics-projects/
 ├── arduino-nano-music-player/
 │   ├── code/
 │   └── images/
-└── tinyjoy-esp8266/
+├── tinyjoy-esp8266/
+│   ├── code/
+│   └── images/
+└── line-follower-robot/
     ├── code/
+    ├── circuit/
     └── images/
 ```
 
 ## About
 
-These projects are part of my hands-on learning in electronics and embedded systems. I enjoy experimenting with microcontrollers, building things from individual components, and turning simple circuits into functional devices.
+These projects reflect my interest in electronics, embedded systems, and robotics. I enjoy experimenting with microcontrollers, understanding how hardware and software work together, and turning circuit ideas into functional devices.
 
-More projects and improvements will be added as I continue building and testing.
-
+I'm continuing to explore new components, improve my designs, and build more practical projects as I learn.
