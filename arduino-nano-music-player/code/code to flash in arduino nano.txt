@@ -1,0 +1,80 @@
+
+#include <LiquidCrystal.h>
+
+// Pin connections
+const int pinBuzzer = 12;
+const int pinButton = 2;
+
+// LCD: RS, EN, D4, D5, D6, D7
+LiquidCrystal lcd(8, 9, 4, 5, 6, 7);
+
+// Approximate melody notes for the song
+const int melody[] = {
+  392, 392, 392, 392, 392, 392, 392, 392,
+  392, 440, 494, 523, 494, 440, 392,
+  330, 392, 440, 494, 440, 392,
+  330, 349, 392, 440, 392, 349, 330,
+  294, 330, 349, 392, 440, 494, 523,
+  494, 440, 392, 440, 494, 523
+};
+
+const int noteCount = sizeof(melody) / sizeof(melody[0]);
+
+void textopan(String line1, String line2) {
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print(line1.substring(0, 16));
+  lcd.setCursor(0, 1);
+  lcd.print(line2.substring(0, 16));
+}
+
+void setup() {
+  pinMode(pinBuzzer, OUTPUT);
+  pinMode(pinButton, INPUT_PULLUP);
+
+  lcd.begin(16, 2);
+  textopan("Can't Take My", "Eyes Off You");
+  delay(1500);
+  textopan("Press button", "to start music");
+}
+
+void loop() {
+  if (digitalRead(pinButton) == LOW) {
+    delay(40); // Debounce
+
+    if (digitalRead(pinButton) == LOW) {
+      playSong();
+
+      while (digitalRead(pinButton) == LOW) {
+        delay(10);
+      }
+      textopan("Press button", "to play again");
+    }
+  }
+}
+
+void playSong() {
+  textopan("Can't take my", "eyes off you...");
+  delay(500);
+
+  for (int i = 0; i < noteCount; i++) {
+    // Display changing sections during playback
+    if (i == 0) {
+      textopan("Intro melody", "Playing...");
+    } else if (i == 10) {
+      textopan("Main melody", "Playing...");
+    } else if (i == 20) {
+      textopan("Song melody", "Playing...");
+    } else if (i == 30) {
+      textopan("Final section", "Playing...");
+    }
+
+    tone(pinBuzzer, melody[i], 220);
+    delay(250);
+    noTone(pinBuzzer);
+  }
+
+  noTone(pinBuzzer);
+  textopan("Music finished", "Thank you!");
+  delay(1200);
+}
