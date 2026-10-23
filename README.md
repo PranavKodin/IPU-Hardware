@@ -120,8 +120,7 @@ electronics-projects/
 │   └── images/
 └── line-follower-robot/
     ├── code/
-    ├── circuit/
-    └── images/
+    └── circuit/
 ```
 
 ## About
